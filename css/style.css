@@ -1,3 +1,11 @@
 body {
     text-align: center;
+    font-family: 'Arial',sans-serif;
+}
+#points {
+	font-size: 36px;
+	margin-bottom: 55px;
+}
+#heartContainer {
+	margin-top: -40px;
 }
