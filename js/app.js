@@ -1,3 +1,4 @@
+'use strict';
 // Enemies our player must avoid
 var Enemy = function(y, speed) {
     // Variables applied to each of our instances go here,
@@ -6,10 +7,10 @@ var Enemy = function(y, speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 
-    // The bugs will start off screen to the left and have variable speeds
+    // The bugs will start off screen to the left and have random speeds
     this.x = -200;
     this.y = y;
-    this.speed = speed = Math.random() * 10 + 4;
+    this.speed = Math.random() * 10 + 4;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -33,7 +34,7 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.reset = function() {
     // Enemies are put back at their starting places, 200px to the left of the canvas.
     this.x = -200;
-    // Random horizontal speed between 4px - 14px / tick is created during the reset 
+    // Random horizontal speed between 4px - 14px / tick is created during the reset
     this.speed = Math.random() * 10 + 4;
 };
 
@@ -69,7 +70,8 @@ function heartDisplay() {
     // Create an empty array to hold the respective number of hearts
     var heartArray = [];
     // Use a for loop to display the same number of heart as the number of lives remaining
-    for (var i = 0; i < lives; i++) {
+    var i;
+    for (i = 0; i < lives; i++) {
         heartArray.push(heart);
     }
     // Display the hearts in the heartContainer element
@@ -143,8 +145,9 @@ Player.prototype.handleInput = function(allowedKeys) {
 // Detect collisions between the Player and all the Enemy objects in the allEnemies array
 Player.prototype.collision = function() {
     // For each enemy...
-    for (var i = 0; i < allEnemies.length; i++) {
-        // ...draw a bounding box around it and see if it overlaps with a bounding box drawn around the Player sprite 
+    var i;
+    for (i = 0; i < allEnemies.length; i++) {
+        // ...draw a bounding box around it and see if it overlaps with a bounding box drawn around the Player sprite
         if (this.x < allEnemies[i].x + 50 && this.x + 50 > allEnemies[i].x && this.y < allEnemies[i].y + 30 && this.y + 30 > allEnemies[i].y) {
             // If it does, reset the Player sprite to the starting location
             this.reset();
@@ -162,7 +165,7 @@ Player.prototype.reset = function() {
     // This is the bottom middle of the canvas
     this.x = 202;
     this.y = 402;
-}
+};
 
 // This class requires an update(), render() and
 // a handleInput() method.
